@@ -12,12 +12,16 @@ public class GameOver : MonoBehaviour
     {
         if(GameObject.FindGameObjectWithTag("Player") == null)
         {
+           // Time.timeScale = 0f;
             gameOverPanel.SetActive(true);
+            Debug.Log("Udarena kometa!");
         }
     }
 
     public void Restart()
     {
+        
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //Time.timeScale = 1f;
     }
 }

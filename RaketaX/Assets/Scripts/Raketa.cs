@@ -11,13 +11,17 @@ public class Raketa : MonoBehaviour
     public float currentHealth;
     public float maxHealth = 80;
     public float healthDecreaseRate = 10;
-    
+    public GameObject gameOverPanel;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth; 
         healthMeter.SetMaxHealth(maxHealth);
+         if (gameOverPanel != null)
+        {
+            gameOverPanel.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -39,6 +43,7 @@ public class Raketa : MonoBehaviour
         if (currentHealth <= 0)
         {
             // Ovde možete dodati logiku koja se dešava kada health padne na 0
+            GameOver();
             Debug.Log("Health je 0!");
         }
          healthMeter.SetHealth(currentHealth);
@@ -49,4 +54,19 @@ public class Raketa : MonoBehaviour
         rb.velocity = new Vector2(0, playerDirection.y * playerSpeed);
         
     }
+    void GameOver()
+    {
+        // Zaustavite igru
+        //Time.timeScale = 0f; // Zaustavlja sve vremenski zavisne operacije
+
+        // Prikazujte Game Over panel
+        if (gameOverPanel != null)
+        {
+            gameOverPanel.SetActive(true);
+        }
+
+        // Logika za završavanje igre
+        Debug.Log("Nestalo goriva!");
+    }
+  
 }
