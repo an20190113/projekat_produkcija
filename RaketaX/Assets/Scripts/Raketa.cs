@@ -68,5 +68,13 @@ public class Raketa : MonoBehaviour
         // Logika za završavanje igre
         Debug.Log("Nestalo goriva!");
     }
-  
+  public void PovecajZdravlje(float amount)
+{
+    currentHealth += amount;
+    currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // Ograničite vrednost između 0 i maxHealth
+    healthMeter.SetHealth(currentHealth); // Ažurirajte vrednost health metra
+
+    // Dodajte logiku za ažuriranje UI-a zdravlja ili slično, ako je potrebno
+}
+
 }
