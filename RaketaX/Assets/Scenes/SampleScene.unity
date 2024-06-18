@@ -868,8 +868,9 @@ GameObject:
   m_Component:
   - component: {fileID: 852710367}
   - component: {fileID: 852710368}
+  - component: {fileID: 852710369}
   m_Layer: 0
-  m_Name: Raketa Sprite
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -942,6 +943,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &852710369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 852710366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e371e9c01ac69b478b1e0d7002da3d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterDB: {fileID: 11400000, guid: f42ff28c74aca3d41aed4b1c51143c8f, type: 2}
+  nameText: {fileID: 0}
+  artworkSprite: {fileID: 852710368}
 --- !u!1 &945795245
 GameObject:
   m_ObjectHideFlags: 0
