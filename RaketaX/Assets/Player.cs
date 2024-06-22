@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-
-
     public CharacterDatabase characterDB;
 
-    public UnityEngine.UI.Text nameText; // Dodajte UnityEngine.UI ovde
+    //public Text nameText;
     public SpriteRenderer artworkSprite;
 
-    private int selectedOption = 0; 
+    private int selectedOption = 0;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        if (PlayerPrefs.HasKey("selectedOption"))
+        if (!PlayerPrefs.HasKey("selectedOption"))
         {
             selectedOption = 0;
         }
@@ -27,18 +27,11 @@ public class Player : MonoBehaviour
         UpdateCharacter(selectedOption);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-
     private void UpdateCharacter(int selectedOption)
     {
         Character character = characterDB.GetCharacter(selectedOption);
         artworkSprite.sprite = character.characterSprite;
-        //nameText.text = character.characterName;
+        // nameText.text = character.characterName;
     }
 
 

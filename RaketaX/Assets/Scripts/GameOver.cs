@@ -24,4 +24,9 @@ public class GameOver : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         //Time.timeScale = 1f;
     }
+
+    public void ChangeSceneBroj2(int sceneID)
+    {
+        SceneManager.LoadScene(sceneID);
+    }
 }

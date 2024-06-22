@@ -7,17 +7,35 @@ using UnityEngine.SceneManagement;
 public class CharacterManager : MonoBehaviour
 {
     public CharacterDatabase characterDB;
-
-    public UnityEngine.UI.Text nameText; // Dodajte UnityEngine.UI ovde
     public SpriteRenderer artworkSprite;
 
     private int selectedOption = 0;
 
-    // Start is called before the first frame update
     void Start()
     {
+        // Check if characterDB is assigned
+        if (characterDB == null)
+        {
+            UnityEngine.Debug.LogError("Character Database is not assigned in the inspector.");
+            return;
+        }
 
-         
+        if (artworkSprite == null)
+        {
+            UnityEngine.Debug.LogError("Artwork Sprite is not assigned in the inspector.");
+            return;
+        }
+
+        if (!PlayerPrefs.HasKey("selectedOption"))
+        {
+            selectedOption = 0;
+        }
+        else
+        {
+            Load();
+        }
+
+        UpdateCharacter(selectedOption);
     }
 
     public void NextOption()
@@ -48,11 +66,27 @@ public class CharacterManager : MonoBehaviour
 
     private void UpdateCharacter(int selectedOption)
     {
-        Character character = characterDB.GetCharacter(selectedOption);
-        artworkSprite.sprite = character.characterSprite;
-        //nameText.text = character.characterName;
-    }
+        if (characterDB == null)
+        {
+            UnityEngine.Debug.LogError("Character Database is not assigned.");
+            return;
+        }
 
+        Character character = characterDB.GetCharacter(selectedOption);
+        if (character == null)
+        {
+            UnityEngine.Debug.LogError("Character not found in the database.");
+            return;
+        }
+
+        if (artworkSprite == null)
+        {
+            UnityEngine.Debug.LogError("Artwork Sprite is not assigned.");
+            return;
+        }
+
+        artworkSprite.sprite = character.characterSprite;
+    }
 
     private void Load()
     {
@@ -62,12 +96,16 @@ public class CharacterManager : MonoBehaviour
     private void Save()
     {
         PlayerPrefs.SetInt("selectedOption", selectedOption);
-
-        
     }
 
     public void ChangeScene(int sceneID)
     {
         SceneManager.LoadScene(sceneID);
+    }
+
+    public void QuitGame()
+    {
+        UnityEngine.Debug.Log("Quitting game...");
+        UnityEngine.Application.Quit();
     }
 }
